@@ -78,6 +78,26 @@ less、sass
  }
  // 不难看出如果用户调用该函数的间隔小于wait的情况下，上一次的时间还未到就被清除了，并不会执行函数
  ```
+ ``` JS
+ // 简单的节流
+ // func是用户传入需要节流的函数
+ // wait是等待时间
+ const debounce = (func, wait = 50) => {
+   // 缓存一个定时器id
+   let timer = 0
+   // 这里返回的函数是每次用户实际调用的节流函数
+   // 如果没有设定过定时器就新建一个计时器，有则跳过
+   // 调用结束后清除计时器
+   return function(...args) {
+     if (!timer) {
+         timer = setTimeout(() => {
+           func.apply(this, args)
+           clearTimeout(timer)
+         }, wait)
+     }
+   }
+ }
+ ```
  
  ## 前端性能优化
 缓存、CDN、减少请求数量、减小资源大小、优化资源加载、减少重绘回流、懒加载、图片优化...  
