@@ -82,7 +82,7 @@ less、sass
  // 简单的节流
  // func是用户传入需要节流的函数
  // wait是等待时间
- const debounce = (func, wait = 50) => {
+ const throttle = (func, wait = 50) => {
    // 缓存一个定时器id
    let timer = 0
    // 这里返回的函数是每次用户实际调用的节流函数
